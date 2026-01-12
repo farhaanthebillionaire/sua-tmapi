@@ -28,8 +28,8 @@ A robust FastAPI application with JWT authentication and comprehensive task mana
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/farhaanthebillionaire/sua&tmapi.git
-   cd sua&tmapi
+   git clone https://github.com/farhaanthebillionaire/sua-tmapi.git
+   cd sua-tmapi
    ```
 
 2. **Create and activate virtual environment**
@@ -144,10 +144,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 👥 Credits
 
 **Developed by:**
-- **Farhnaa** - Core development and architecture
-- **[Your Name]** - Additional contributions and improvements
+- **Farhaan** - Project owner and lead developer
 
-Special thanks to Farhnaa for their exceptional work on the authentication system and task management features.
+This project was created and is maintained by Farhaan as a comprehensive authentication and task management solution.
 
 ## 📞 Support
 
