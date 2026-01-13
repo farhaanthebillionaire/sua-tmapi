@@ -2,29 +2,40 @@
 
 A robust FastAPI application with JWT authentication and comprehensive task management features.
 
-![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
-![FastAPI](https://img.shields.io/badge/FastAPI-0.68.0+-green)
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.95.2-green)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-blue)
+![Render](https://img.shields.io/badge/Deployed%20on-Render-000000)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 
 ## 🚀 Features
 
 - **User Authentication**: Secure registration and login with JWT tokens
-- **Password Security**: Bcrypt hashing for secure password storage
-- **Protected Routes**: Authentication required for sensitive operations
+- **Password Security**: Bcrypt hashing with 72-byte truncation for compatibility
+- **Protected Routes**: OAuth2 Bearer token authentication
 - **Task Management**: Full CRUD operations for tasks
 - **User-Specific Tasks**: Each task is linked to a specific user
-- **Database**: SQLite for local development (easily upgradeable to PostgreSQL)
+- **Database**: SQLite for local development, PostgreSQL for production
+- **Auto-Documentation**: Interactive Swagger UI and ReDoc
+- **Production Ready**: Deployed on Render with PostgreSQL database
+- **Health Monitoring**: Health check endpoints for monitoring
+- **Security Best Practices**: JWT expiration, SQL injection prevention
 
 ## 🛠 Tech Stack
 
-- **FastAPI** - Modern, fast web framework for building APIs
-- **Pydantic** - Data validation using Python type annotations
-- **SQLAlchemy** - SQL toolkit and ORM
-- **SQLite** - Lightweight database for development
-- **JWT Authentication** - Secure token-based authentication
+- **FastAPI 0.95.2** - Modern, fast web framework for building APIs
+- **Pydantic 1.10.12** - Data validation using Python type annotations
+- **SQLAlchemy 2.0.23** - SQL toolkit and ORM
+- **PostgreSQL** - Production database (Render managed)
+- **SQLite** - Lightweight database for local development
+- **JWT Authentication** - Secure token-based authentication with HS256
 - **Uvicorn** - ASGI server for running FastAPI apps
+- **Passlib** - Password hashing with bcrypt
+- **Render** - Cloud deployment platform
 
 ## 📦 Installation
+
+### Local Development
 
 1. **Clone the repository**
    ```bash
@@ -48,16 +59,34 @@ A robust FastAPI application with JWT authentication and comprehensive task mana
 
 4. **Run the application**
    ```bash
-   uvicorn app.main:app --reload
+   # Option 1: Direct uvicorn
+   python -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
+   
+   # Option 2: Auto-open docs (recommended for development)
+   python start_server.py
    ```
 
-The API will be available at `http://localhost:8000`
+The API will be available at `http://localhost:8000` and documentation at `http://localhost:8000/docs`
+
+### Production Deployment
+
+**Deployed on Render:** https://sua-tmapi.onrender.com
+
+The application is automatically deployed with:
+- PostgreSQL database (`taskdb`)
+- Environment variables configured
+- SSL/TLS encryption
+- Health monitoring
 
 ## 📚 API Documentation
 
-Once the server is running, visit:
+### Local Development
 - **Swagger UI**: `http://localhost:8000/docs`
 - **ReDoc**: `http://localhost:8000/redoc`
+
+### Production
+- **Swagger UI**: `https://sua-tmapi.onrender.com/docs`
+- **ReDoc**: `https://sua-tmapi.onrender.com/redoc`
 
 ## 🔗 API Endpoints
 
@@ -128,10 +157,27 @@ app/
 
 ## 🔒 Security Notes
 
-- **Secret Key**: The secret key in `utils/security.py` should be changed in production
-- **Environment Variables**: Use environment variables for sensitive configuration
-- **Production Database**: Consider using PostgreSQL in production instead of SQLite
-- **HTTPS**: Always use HTTPS in production environments
+### Authentication & Authorization
+- **JWT Tokens**: 30-minute expiration with HS256 algorithm
+- **Password Security**: Bcrypt hashing with 72-byte truncation
+- **OAuth2 Bearer**: Standardized token authentication scheme
+- **Environment Variables**: Sensitive data stored in environment
+
+### Database Security
+- **SQL Injection Prevention**: SQLAlchemy ORM parameterized queries
+- **Data Validation**: Pydantic schemas for input validation
+- **User Isolation**: Tasks are scoped to authenticated users
+
+### Production Security
+- **HTTPS/SSL**: Automatic SSL certificates on Render
+- **Environment Variables**: Production secrets managed by Render
+- **Database Encryption**: PostgreSQL with SSL connections
+- **CORS Configuration**: Proper cross-origin request handling
+
+### Development Security
+- **Secret Key**: Change `SECRET_KEY` in production environment
+- **Database**: Use PostgreSQL in production (configured on Render)
+- **Monitoring**: Health endpoints for system monitoring
 
 ## 🤝 Contributing
 
@@ -141,12 +187,24 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 👥 Credits
+## 👥 Project Information
 
-**Developed by:**
-- **Farhaan** - Project owner and lead developer
+### Purpose
+This project demonstrates modern Python development skills with a focus on building secure, scalable RESTful APIs.
 
-This project was created and is maintained by Farhaan as a comprehensive authentication and task management solution.
+### Developer
+- **Developed by**: Farhaan
+- **Certification**: Certified Agile Scrum Master
+- **Focus**: Modern Python development with security best practices
+
+### Technical Demonstration
+This project showcases expertise in:
+- FastAPI web framework and RESTful API development
+- JWT authentication and security implementation
+- Database design with SQLAlchemy ORM
+- Production deployment on cloud platforms
+- Code quality and maintainability
+- Agile development practices
 
 ## 📞 Support
 
