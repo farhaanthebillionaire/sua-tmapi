@@ -14,7 +14,7 @@ class UserResponse(BaseModel):
     email: str
 
     class Config:
-        from_attributes = True
+        orm_mode = True
 
 
 class UserLogin(BaseModel):
